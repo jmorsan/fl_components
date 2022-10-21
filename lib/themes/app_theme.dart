@@ -22,5 +22,17 @@ class AppTheme{
           foregroundColor: primary
         )
       ),
+
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: primary,
+        elevation: 5,
+      ),
+
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          shape: const StadiumBorder(),
+          elevation: 0,
+        )
+      )
   );
 }
