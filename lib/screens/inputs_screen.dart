@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fl_components/widgets/widgets.dart';
 
 class InputsScreen extends StatelessWidget {
    
@@ -8,7 +9,7 @@ class InputsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text('Inputs y Forms'),
+        title: const Text('Inputs y Forms'),
         ),
       body: SingleChildScrollView(
          child: Padding(
@@ -17,32 +18,8 @@ class InputsScreen extends StatelessWidget {
             vertical: 10
           ),
           child: Column(
-            children: [
-              TextFormField(
-                autofocus: true,
-                initialValue: '',
-                textCapitalization: TextCapitalization.words,
-                onChanged: (value) {
-                  print('value: $value');
-                },
-                validator: (value) {
-                  if( value == null) return 'Este campo es requerido';
-                  return value.length < 3 ? 'Hola mundo' : null;
-                },
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                decoration: const InputDecoration(
-                  hintText: 'Nombre de usuario',
-                  labelText: 'Nombre',
-                  helperText: 'Solo letras',
-                  //prefixIcon: Icon(Icons.verified_user_outlined),
-                  suffixIcon: Icon(Icons.grade_outlined),
-                  icon:Icon(Icons.assignment_ind_outlined),
-                  border:OutlineInputBorder(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10)
-                    ) )
-                ),
-              )
+            children: const [
+              CustomInputField( labelText: 'Nombre' , hintText: 'Nombre del usuario')
             ],
           ),
          ),
@@ -50,3 +27,4 @@ class InputsScreen extends StatelessWidget {
     );
   }
 }
+
