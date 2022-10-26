@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomInputField extends StatelessWidget {
   const CustomInputField({
-    Key? key, this.hintText, this.labelText, this.helperText, this.suffixIcon, this.icon,
+    Key? key, this.hintText, this.labelText, this.helperText, this.suffixIcon, this.icon, this.keyboardType, this.obscureText = false, required this.formProperty, required this.formValues,
   }) : super(key: key);
 
         final String? hintText;
@@ -10,6 +10,11 @@ class CustomInputField extends StatelessWidget {
         final String? helperText;
         final IconData? suffixIcon;
         final IconData? icon;
+        final TextInputType? keyboardType;
+        final bool obscureText;
+
+        final String formProperty;
+        final Map<String,String> formValues;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +22,10 @@ class CustomInputField extends StatelessWidget {
       autofocus: true,
       initialValue: '',
       textCapitalization: TextCapitalization.words,
+      keyboardType: keyboardType,
+      obscureText: obscureText,
       onChanged: (value) {
-        print('value: $value');
+        formValues[formProperty] = value;
       },
       validator: (value) {
         if( value == null) return 'Este campo es requerido';
