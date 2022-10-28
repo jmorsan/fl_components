@@ -14,30 +14,74 @@ class SliderScreen extends StatefulWidget {
 class _SliderScreenState extends State<SliderScreen> {
 
 double _slideValue = 100;
+bool _sliderEnabled = true;
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-         title: Text('Slider and Checks'),
+         title: const Text('Slider and Checks'),
       ),
 
       body: Column(
         children: [
-          Slider(
+          Slider.adaptive(
             
             min: 50,
-            max: 400,
+            max: 700,
             value: _slideValue,
             activeColor: AppTheme.primary,
             divisions: 10,
 
             onChanged:(value){
               _slideValue=value;
-              setState(() {
+              setState((
+              ) {}
+              );
+            } ,),
+
+            Checkbox(
+              value: _sliderEnabled, 
+              onChanged: (value){
+                _sliderEnabled = value ?? true;
+              }),
+
+              CheckboxListTile(
+                activeColor: AppTheme.primary,
+                title: const Text('Habilitar Slider'),
+                value: _sliderEnabled, 
+                onChanged: ((value) => setState(() {
+                  _sliderEnabled = value ?? true;
+                  })
+                )
+              ),
+
+              SwitchListTile.adaptive(
+                activeColor: AppTheme.primary,
+                title: const Text('Habilitar Slider'),
+                value: _sliderEnabled, 
+                onChanged: ((value) => setState(() {
+                  _sliderEnabled = value;
+                  })
+                )
+              ),
+
                 
-              });
-            } ,)
+
+            Expanded(
+              child: SingleChildScrollView(
+                  child: Image(
+                    image: const NetworkImage('https://pbs.twimg.com/media/ESc9v2YXkAADk6i.jpg'),
+                    fit: BoxFit.contain,
+                    width: _slideValue,
+                  ),
+               ),
+            ),
+               
+
+            
+           
+
         ],
       )
     );
